@@ -22,13 +22,66 @@ Je vous invite à regarder la vidéo de [Human Talks Paris](https://www.youtube.
 Quelques petites questions :
 
 - Résumer en une phrase l'intérêt de Material UI
+→ Récupérer le design de nombreux composants web, à travers une librairie,  pour designer son app web de façon cohérente et efficace avec une bonne expérience utilisateur.
 - Comment importer `material-ui` dans un fichier ?
+→ Il faut installer material-ui sur le projet et ensuite importer les components désiré depuis '@material-ui/core/...'.
 - Comment une application peut utiliser un thème à travers l'ensemble d'un projet ?
+→ Il faut récupérer un component MuiThemeProvider et encapsuler son projet dans des balises <MuiThemeProvider>
 - A quoi sert `createMuiTheme` ?
+→ Il permet de créer un objet thème pour personnaliser tout une partie des composants importés depuis Material UI. Cette objet serras ensuite passé en paramètre de la propriété them du MuiThemeProvider 
 - A quoi correspond `palette` ?
+→ A toute les couleurs que l'ont va utiliser dans notre application, c'est ici qu'on les renseigne 
 - Comment re-définir des propriétés ?
+→ Par le biais de la clé overrides de createMuiTheme
 - A quoi vous fait penser `withStyle` ? Comment l'utiliser ?
+→ Il permet de fournir un fichier style à l'application pour personaliser au mieux les components. Pour l'utiliser , il faut le placer au niveau de l'export default
 - Reproduire les deux boutons rouge et bleu présentées dans la vidéo.
+
+
+```import React, { Component } from "React"
+import { MuiThemeProvider, createMuiTheme, withStyles } from "@material-ui/core/styles"
+import Button from "@material-ui/core/Button"
+import blue from "@material-ui/core/colors/blue"
+
+class App extends Component {
+    render() {
+        return(
+            <MuiThemeProvider theme={theme}>
+                <div>
+                    <Button className={this.props.classes.leftButton}> Bonjour </Button>
+                    <Button> Mr. Guhur </Button>
+                <div>
+            </MuiThemProvider>
+        )
+    }
+}
+
+const theme = createMuiTheme({
+    palette: {
+        primary: blue
+    },
+    typography: {
+        fontSize: 15,
+        font-family: "Arial"
+    }
+    overrides: {
+        MuiButton: {
+            root: {
+            backgroundColor: "red",
+            "&:hover": { backgroundColor: "yellow" }
+        }
+    }
+})
+
+const styles = {
+    leftButton: {
+        backgroundColor: 'blue'
+    }
+}
+
+export default withStyles(styles)(App) 
+```
+
 
 
 ## Styled Components
@@ -38,11 +91,99 @@ De la même manière, voici une [vidéo](https://www.youtube.com/watch?v=mS0UKNB
 Quelques petites questions :
 
 - Qu'est-ce que le CSS-in-JS ?
+→ C'est une méthode pour écrire du CSS à travers le JS afin d'avoir uj code CSS plus basé sur la composition et l'éritage du style. 
 - Qu'est-ce que sont les tagged templates (délimitées par des backticks) ?
+→ Une manière d'écrire les propriétés 
 - Donner un exemple d'un bouton personnalisé avec et sans les tagged templates ?
+
+→ La syntaxe sans les tagged templates :
+``` 
+const Button = styles.button(["background-color: coral"])
+```
+
+→ La syntaxe avec les tagged templates :
+
+``` 
+const Button = styled.button`
+	background-color: coral;
+`
+```
 - Comment utilise-t-on les props dans cette librarie ?
+→ Les props sont utilisables par le biais du DOM, mais on peut aussi accéder aux props directement dans le composant et faire du style conditionnel avec ça
 - Reprendre l'exemple du Material UI avec styled-components; l'écrire avec la composition et avec l'héritage.
+
+``` 
+import React from 'react';
+import styled from 'styled-components'
+
+const commonstyles = `
+cursor: pointer;
+padding: 4px 8px;
+border: solid;
+`
+
+const Button1 = styled.button`
+  ${commonstyles}
+
+  background-color: blue
+`
+
+const Button2 = styled.button`
+    ${commonstyles}
+    
+    background-color: red
+`
+
+function App(props) {
+  return (
+    <div>
+        <Button1> Bonjour </Button1>
+        <Button2> Mr. Guhur </Button2>
+    <div>
+  );
+}
+
+
+
+
+export default (App);
+``` 
+
+``` 
+// App.js
+import React from 'react';
+
+
+function App(props) {
+  return (
+    <div>
+        <Button1> Bonjour </Button1>
+        <Button1Bis> Mr. Guhur </Button1bis>
+    <div>
+  );
+}
+
+export default (App);
+
+// Button1Bis.js
+import styled from 'styled-components'
+
+export const Button1 = styled.button`
+    cursor: pointer;
+    padding: 4px 8px;
+    border: solid;
+    background-color: blue
+`
+
+export const Button1Bis = styled(Button1)`
+    background-color: red;
+`
+``` 
+
+
+
 - Quelles sont les fonctions du contexte de styled-components ?
+→ Le contexte de styled-components permet de styliser via le thème 
 
 
 ## Mise en place du design
