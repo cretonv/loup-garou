@@ -1,5 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import firebase from './Firebase';
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 const connect = () => {
  firebase.auth().signInAnonymously().catch(error => {
@@ -94,7 +96,9 @@ export const UserProvider = (props) => {
   const { children } = props;
   return (
     <userContext.Provider value={{user}}>
+      <Header/>
       {children}
+      <Footer/>
     </userContext.Provider>
   );
 }

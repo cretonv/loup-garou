@@ -9,15 +9,17 @@ const Start = () => {
   const { user } = useSession();
   return (
     <div>
-        <Button children={"Salut"}/>
+        {/*<Button children={"Salut"}/>*/}
         <Button>
           <Link to="/create" onClick={() => createGame(user)}> Nouvelle partie
           </Link>
         </Button>
       <br />
-      <Link to="/join">
-        Rejoindre une partie
-      </Link>
+      <Button>
+          <Link to="/join">
+            Rejoindre une partie
+          </Link>
+      </Button>
     </div>
   );
 }

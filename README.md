@@ -236,6 +236,8 @@ const truc = props.children;
 
 → GameProvider => Définis dans le fichier Game.js, il gère la connexion avec la database pendant la partie pour envoyer les informations à afficher sur l'écran joeur et gérer ses actions
 
+→ BrowserRouter => Gère les déplacemetns entre les pages et la réécriture d'URL (Routage)
+
 - Identifier les différentes pages de l'application. Décrire à l'aide d'une phrase le rôle de chacune d'entre elles.
 
 → StartPage.js => Page d'accueil qui s'affiche à l'arivée sur le site permettant de créer ou rejoindre une partie
@@ -256,7 +258,7 @@ const truc = props.children;
 
 → Alive.js => PAge afihcée pour les joeurs encore vivants
 
-→ CodePage.js =>
+→ CodePage.js => Page permettant de se connecter 
 
 - Pourquoi voit-on sur plusieurs pages "Chargement du master game en cours" ?
 
@@ -265,14 +267,17 @@ const truc = props.children;
 - Avec les classes, nous utilisions `withMyContext` pour s'inscrire aux données d'un provider. Identifier dans services/Game.js la fonction qui joue désormais ce rôle.
 
 ```javascript
-    <gameContext.Provider value={{game}}>
-      {children}
-    </gameContext.Provider>
+    export const useGame = () => {
+      const {game} = useContext(gameContext);
+      return {game};
+    };
 ```
+
+→ C'est cette fonction, useGame(), qui joue désormais ce rôle
 
 - Dans `CodePage`, rappeler comment un formulaire gère les champs de remplissage des données.o
 
-
+TODO
 
 ### Reprise du design
 
