@@ -38,7 +38,8 @@ Quelques petites questions :
 - Reproduire les deux boutons rouge et bleu présentées dans la vidéo.
 
 
-```import React, { Component } from "React"
+```javascript
+import React, { Component } from "React"
 import { MuiThemeProvider, createMuiTheme, withStyles } from "@material-ui/core/styles"
 import Button from "@material-ui/core/Button"
 import blue from "@material-ui/core/colors/blue"
@@ -97,13 +98,13 @@ Quelques petites questions :
 - Donner un exemple d'un bouton personnalisé avec et sans les tagged templates ?
 
 → La syntaxe sans les tagged templates :
-``` 
+```javascript
 const Button = styles.button(["background-color: coral"])
 ```
 
 → La syntaxe avec les tagged templates :
 
-``` 
+```javascript
 const Button = styled.button`
 	background-color: coral;
 `
@@ -112,7 +113,7 @@ const Button = styled.button`
 → Les props sont utilisables par le biais du DOM, mais on peut aussi accéder aux props directement dans le composant et faire du style conditionnel avec ça
 - Reprendre l'exemple du Material UI avec styled-components; l'écrire avec la composition et avec l'héritage.
 
-``` 
+```javascript
 import React from 'react';
 import styled from 'styled-components'
 
@@ -149,7 +150,7 @@ function App(props) {
 export default (App);
 ``` 
 
-``` 
+```javascript 
 // App.js
 import React from 'react';
 
@@ -205,12 +206,73 @@ Activer l'authentification anonyme dans la console de Firebase.
 ### Découverte du code
 
 - Le code utilise des fonctions plutôt que des classes. Ecrire un bouton sous la forme d'une classe et d'une fonction. Retrouver les équivalences entre les méthodes des composants (telles que setState) et celles des fonctions ?
+```javascript 
+
+class Button extends React.Component {
+  render() {
+    return (<button onClick={this.props.onClick}> {this.props.children} </button>);
+  }
+}
+
+export default Button;
+
+``` 
+
 - Comment récupérer les props dans une fonction ?
+
+→ Plusieurs solutions :
+```javascript
+const { onClick, children } = props;
+```
+
+```javascript
+const truc = props.children;
+```
 - Dans `App.js`, identifier les différents producteurs de données. Retrouver leur définition. Quelles données partagent-ils à l'ensemble de l'application ?
+
+→ UserProvider => Définis dans le fichier User.js, il gère l'état de la connexion de l'user avec la database et l'affiche à l'utilisateur (ex: "Chargement...")
+
+→ MasterGameProvider => Définis dans le fichier MasterGame.js, il gère la connexion avec la database du coté de la partie et ne se s'occuper pas du coté joeur (Représente le game master dont on s'affranchis)
+
+→ GameProvider => Définis dans le fichier Game.js, il gère la connexion avec la database pendant la partie pour envoyer les informations à afficher sur l'écran joeur et gérer ses actions
+
 - Identifier les différentes pages de l'application. Décrire à l'aide d'une phrase le rôle de chacune d'entre elles.
+
+→ StartPage.js => Page d'accueil qui s'affiche à l'arivée sur le site permettant de créer ou rejoindre une partie
+
+→ CreatePage.js => Page de création de la partie permettant d'obtenir le code la partie et de la démarrer mais aussi d'ajouter un joeur (AddPlayerForm)
+ 
+→ NightPage.js => Affichage de ce qui se passe pendant la nuit durant la partie
+
+→ EndPage.js => Affiche le résultat finale (en fin de partie)
+
+→ DeadPage.js => Page qui s'affiche pour un joeur lorsqu'il est mort 
+
+→ SpellPage.js => Page qui s'affiche pour la soricère lui permttant d'utilsier ses pouvoirs
+
+→ ResultsPage => Affiche les résultats du vote et les morts
+
+→ CastPage => Permet au joueur de voter
+
+→ Alive.js => PAge afihcée pour les joeurs encore vivants
+
+→ CodePage.js =>
+
 - Pourquoi voit-on sur plusieurs pages "Chargement du master game en cours" ?
+
+→ Car il est appelé dans game.js et MasterGame.js 
+
 - Avec les classes, nous utilisions `withMyContext` pour s'inscrire aux données d'un provider. Identifier dans services/Game.js la fonction qui joue désormais ce rôle.
+
+```javascript
+    <gameContext.Provider value={{game}}>
+      {children}
+    </gameContext.Provider>
+```
+
 - Dans `CodePage`, rappeler comment un formulaire gère les champs de remplissage des données.o
+
+
 
 ### Reprise du design
 

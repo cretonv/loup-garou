@@ -9,6 +9,7 @@ const Start = () => {
   const { user } = useSession();
   return (
     <div>
+        <Button children={"Salut"}/>
         <Button>
           <Link to="/create" onClick={() => createGame(user)}> Nouvelle partie
           </Link>

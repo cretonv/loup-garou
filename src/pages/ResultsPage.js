@@ -12,7 +12,7 @@ const ResultsPage = () => {
     return <div>Oops... La phase est {game.phase}</div>;
   }
 
-  const isFinished = true;
+  let isFinished = true;
   game.users.forEach( 
     (user) => {
       if (user.vote === "" && user.isAlive) {
