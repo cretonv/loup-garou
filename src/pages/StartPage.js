@@ -4,14 +4,13 @@ import { useSession } from '../services/User';
 import { createGame } from '../services/MasterGame';
 import Button from "../components/Button";
 
-
 const Start = () => {
   const { user } = useSession();
   return (
     <div>
         {/*<Button children={"Salut"}/>*/}
         <Button>
-          <Link to="/create" onClick={() => createGame(user)}> Nouvelle partie
+          <Link to="/create" onClick={() => createGame(user)}>  Nouvelle partie
           </Link>
         </Button>
       <br />
