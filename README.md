@@ -286,6 +286,7 @@ const truc = props.children;
 - Ajouter un header et un footer sur toutes les pages de l'application. 
 - Réaliser le design du formulaire de de `CodePage`, utilisé pour rejoindre l'application.
 - Faire de même avec `CreatePage`.
+- **J'ai rajouter quelques éléments de design et de navigation au site non demandé ci dessus, retrouvé la liste ci dessous :**
 
 
 ### Utilisation de Firebase
