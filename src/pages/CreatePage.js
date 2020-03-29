@@ -74,6 +74,8 @@ const FormContainer = styled.div`
 const GameCode = styled.span`
     color: salmon;
     font-weight: bold;
+    font-family: 'Metal Mania', cursive;
+    font-size: 30px;
 `
 
 
@@ -101,7 +103,7 @@ const AddPlayerForm = () => {
       <button>+</button>
     </form>*/
 
-      <FormContainer>
+    <FormContainer>
       <MainDiv>
           <form onSubmit={handleSubmit}>
             <FormField>
@@ -118,7 +120,7 @@ const AddPlayerForm = () => {
               <Button>Ajouter</Button>
           </form>
       </MainDiv>
-</FormContainer>
+    </FormContainer>
   );
 };
 

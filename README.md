@@ -277,7 +277,7 @@ const truc = props.children;
 
 - Dans `CodePage`, rappeler comment un formulaire gère les champs de remplissage des données.o
 
-**TODO**
+→ Il enregistre dans un premier les données des champs dans le state via setCode et setName, puis au clique sur le bouton submit on envoie les données stockés vers la database via handleSubmit() .
 
 ### Reprise du design
 
@@ -287,16 +287,43 @@ const truc = props.children;
 - Réaliser le design du formulaire de de `CodePage`, utilisé pour rejoindre l'application.
 - Faire de même avec `CreatePage`.
 - **J'ai rajouter quelques éléments de design et de navigation au site non demandé ci dessus, retrouvé la liste ci dessous :**
+    - Cliquer sur le logo du site nous renvoie à la StartPage
+    - Ajout d'une police cohérente pour les titres, et de titres pertients
+    - Design Responsive grâce au media queries
 
 
 ### Utilisation de Firebase
 
 - Dans 'User.js', comment fait-on pour garder une trace persistente de l'application, même lorsqu'on rafraichit la page ? Comment reconnait-on l'utilisateur lorsqu'il revient dans l'application ?
+
+→ Pour réaliser tout ça, on va utiliser la méthode auth fournis par firebase (objet créé dans Firebase.js), qui va mémoriser l'utilisateur connecté. Tout ce qui concerne le back end et les modalités de connexion sont gérés par firebase, et pour rendre ces fonctionnalités sur tout l'application, on utilise un provider (UserProvider) qu'on introduit dans App.js 
+
 - Dans Firebase, nous ne pouvons pas ajouter des champs à un utilisateur. Par conséquent, nous devons créer une collection d'utilisateurs et synchroniser les utilisateurs avec cette table. Expliquer où est-ce que cette synchronisation a lieu.
+
+→ Elle à lieu dans la fonction useUser. Celle ci prends les infos de l'utilisateur en "local" (via useAuth()) pour les introduire dans firebase (synchronisation)  
+
 - A votre avis, à quoi sert useEffect ?
+
+→ D'éviter le blocage de l'application
+
 - A quoi sert la fonction `unsubscribe` utilisée dans les `useEffect` de `User.js` ?
+
+→
+
+
 - Décrire les trois valeurs de retour de `UseUser`.
+
+→ Error: Booléen indiquant si une erreur est présente ou non
+
+→ Loading: Booléen qui indique si le chargement est en cours ou pas
+
+→ User: c'est un objet, l'objet user
+
 - Combien de collections dans Firebase pouvez-vous identifier ? A quoi correspondent les `doc` ?
+
+→ Nous avons créer deux collections dans Firebase, game et user 
+
+→ Les docs sont l'unité de stockage de FireBase. C'est le contenu d'une collection, qui peut contenir que des documents et rien d'autre (les collections ne peuvent pas contenir de valeur direct ou de data). Ce sont donc dans les documents que l'on stock les data. Le document permet donc de stocker des données sous forme de propriétés/champs. En résumé, le document est un regroupement de data enregistré dans une collection
 
 ### Contribuer à l'application
 

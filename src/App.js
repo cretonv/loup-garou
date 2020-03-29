@@ -13,6 +13,7 @@ import DeadPage from './pages/DeadPage'
 import { MasterGameProvider } from './services/MasterGame';
 import { GameProvider } from './services/Game';
 import { UserProvider } from './services/User';
+import './App.css'
 
 
 function App() {

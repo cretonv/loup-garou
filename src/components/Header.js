@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faWolfPackBattalion } from '@fortawesome/free-brands-svg-icons'
+import { Link } from 'react-router-dom'
 
 const Header1 = styled.div`
   width: 100vw;
@@ -14,6 +15,10 @@ const Header1 = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  a {
+    color: #ededed;
+  }
 `
 
 const Header = (props) => {
@@ -21,7 +26,7 @@ const Header = (props) => {
   //const truc = props.children;
   return (
     <Header1>
-        <FontAwesomeIcon icon={faWolfPackBattalion}/>
+        <Link to="/"><FontAwesomeIcon icon={faWolfPackBattalion}/></Link>
     </Header1>
     );
 }
